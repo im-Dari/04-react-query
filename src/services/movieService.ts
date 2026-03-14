@@ -1,5 +1,12 @@
 import axios from "axios";
-import type { MoviesResponse } from "../types/movie";
+import type { Movie } from "../types/movie";
+
+export interface MoviesResponse {
+  results: Movie[];
+  page: number;
+  total_pages: number;
+  total_results: number;
+}
 
 const BASE_URL = "https://api.themoviedb.org/3/search/movie";
 
@@ -19,7 +26,7 @@ export async function fetchMovies(
   const response = await axios.get<MoviesResponse>(BASE_URL, {
     params: {
       query,
-      language: "uk-UA",
+      language: "en-US",
       page,
     },
     headers: {
